@@ -11,10 +11,10 @@ function splitString(input, index) {
     const domains = j[1].split(".");
     console.log('here is the count: ' + count);
     console.log('here is the domain: ' + domains);
-    countVisits(domains);
+    countVisits(count, domains);
 }
 
-function countVisits(subdomains) {
+function countVisits(count, subdomains) {
     for (i = 0; i < subdomains.length; i++) {
         let temp = ``;
         for (j = i; j < subdomains.length; j++) {
@@ -26,12 +26,22 @@ function countVisits(subdomains) {
                 // checkDomain(count, temp);
             }
         }
-        console.log('this is what temp looks like: ' + temp);
-        // checkDomain(count, temp);
+        // console.log('this is what temp looks like: ' + temp);
+        checkDomain(count, temp);
+    }
+}
+
+function checkDomain(visitCount, subdomainsList) {
+    // console.log('here is the count ' + count)
+    // console.log('here is the domain you are checking ' + subdomains)
+    if (domainPairs[subdomainsList]) {
+        domainPairs[subdomainsList] += visitCount;
+    } else {
+        domainPairs[subdomainsList] = visitCount;
     }
 }
 
 const domainPairs = {};
 cpdomains = ["9000 discuss.leetcode.com", "1 discuss.leetcode.com", "2 email.com"]
 processArray(cpdomains);
-// console.log(domainPairs);
+console.log(domainPairs);
